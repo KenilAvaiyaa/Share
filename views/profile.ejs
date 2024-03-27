@@ -1,0 +1,39 @@
+<% include ./partials/header.ejs %>
+    <div class="profil w-full h-screen bg-zinc-800 text-white pt-1">
+        <form id="Ufile" hidden action="/fileuplode" method="post" enctype="multipart/form-data">
+            <input type="file" name="image">
+        </form>
+        <div class="profdet flex flex-col items-center mt-10">
+            <div class="relative">
+                <span id="uplode" class="w-8 h-8 rounded-full bg-slate-500 absolute bottom-0 right-0 flex items-center justify-center">
+                    <i class="ri-pencil-line "></i>
+                </span>
+                <div class="w-32 h-32 bg-zinc-200 rounded-full overflow-hidden">
+                    <img class=" w-full h-full object-cover" src="/images/uplode/<%= user.profileImage %>" alt="">
+                </div>
+            </div>          
+            <h1 class="text-2xl text-semibold"><%= user.fullname %></h1>
+            <h3 class="text-md">@<%= user.username %></h3>
+            <a href="/edit" class=" mt-3 px-7 py-2 bg-emerald-700 rounded-full text-xs font-semibold">Edit </a>
+            <a href="/add" class=" bg-emerald-700 px-6 py-2 rounded-lg mt-1">Add new post</a>
+        </div>
+        <div class="flex flex-wrap">
+            <div class="card flex flex-col flex-wrap px-5 mt-10">
+                <div class="w-40 h-48 bg-zinc-200 rounded-md overflow-hidden">
+                    <img class="w-full h-full object-cover object-center" src="/images/uplode/<%= user?.posts[0]?.photo %>" alt="">
+                </div>
+                <a href="/show/post" class="text-xl font-semibold mt-2">Your uploded posts</a>
+                <h5 class="text-sm font-semibold opacity-80"><%= user.posts.length %> post </h5>
+            </div>
+            
+        </div>
+    </div>
+    <script>
+        document.querySelector("#uplode").addEventListener("click",function(){
+            document.querySelector("#Ufile input").click( )
+        })
+        document.querySelector("#Ufile input").addEventListener("change",()=>{
+            document.querySelector("#Ufile").submit( )
+        })
+    </script>
+<% include ./partials/footer.ejs %> 
